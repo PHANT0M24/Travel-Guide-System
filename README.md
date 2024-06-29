@@ -1,3 +1,5 @@
+# Destination Diary
+
 Destination Diary is a comprehensive tour guide system designed to enhance your travel experiences. This project was developed collaboratively by a team of four members using the MERN stack. It leverages the power of Tailwind CSS and DaisyUI for styling and JWT for secure authentication.
 
 ## Table of Contents
