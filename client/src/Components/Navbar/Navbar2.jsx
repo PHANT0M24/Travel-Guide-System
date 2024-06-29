@@ -18,7 +18,7 @@ function Navbar2() {
     <div
       className={`navbar ${
         changeHeader
-          ? "bg-white fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
+          ? "bg-[#0000008C] fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
           : "bg-transparent fixed z-50 top-0 left-0 w-full transition duration-500"
       }`}
     >
