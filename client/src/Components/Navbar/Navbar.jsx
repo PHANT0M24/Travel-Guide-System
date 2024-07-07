@@ -36,7 +36,7 @@ function Navbar() {
       className={`navbar ${
         changeHeader
           ? "bg-[#000000CC] fixed z-50 top-0 left-0 w-full shadow-md transition duration-500 text-white font-bold"
-          : "bg-transparent to-emerald-700 fixed z-50 top-0 left-0 w-full transition duration-500"
+          : "bg-transparent to-emerald-700 fixed z-50 top-0 left-0 w-full transition duration-500 font-black"
       }`}
     >
       <div className="navbar-start">
@@ -62,7 +62,7 @@ function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Item 1</a>
+              <a href="/">Home</a>
             </li>
             <li>
               <a>Parent</a>
@@ -78,13 +78,19 @@ function Navbar() {
             <li>
               <a>Item 3</a>
             </li>
+            <li>
+              <a href="/register">Register</a>
+            </li>
+            <li>
+              <a href="/login">Log In</a>
+            </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <details>
@@ -109,7 +115,7 @@ function Navbar() {
             <a href="/register">Register</a>
           </li>
           <li>
-            <a href="/login">LogIn</a>
+            <a href="/login">Log In</a>
           </li>
         </ul>
       </div>

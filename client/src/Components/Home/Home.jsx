@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="">
+    <div>
       <div
         className="hero min-h-screen"
         style={{
