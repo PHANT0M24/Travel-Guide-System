@@ -13,7 +13,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const c_password = form.c_password.value;
-    let newUser = {}
+    let newUser = {};
 
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
@@ -36,11 +36,10 @@ const Register = () => {
     } else if (password !== c_password) {
       toast.error("Passwords do not match.");
       return;
-    } else{
-      newUser = { firstName, lastName, email, password, c_password };
+    } else {
+      newUser = { firstName, lastName, email, password };
     }
-    if (Object.keys(newUser).length > 0){
-
+    if (Object.keys(newUser).length > 0) {
       const response = await fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
@@ -49,7 +48,10 @@ const Register = () => {
         body: JSON.stringify(newUser),
       });
       const data = await response.json();
-      console.log(data);
+      if (data.insertedId) {
+        toast.success("Registration Successful!");
+        form.reset();
+      }
     }
   };
 

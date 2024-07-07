@@ -10,16 +10,15 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    toast.success("success")
+    toast.success("success");
   };
-
 
   return (
     <div className="min-h-[70vh] flex container mx-auto my-20">
       <style>
         {`
           .login_img_section {
-            background: linear-gradient(rgba(2,2,2,.8),rgba(0,0,0,.7)),url(https://i.ibb.co/HBQ1zn7/Cozy-Townhouse-with-Garden.jpg) center center;
+            background: linear-gradient(rgba(2,2,2,.8),rgba(0,0,0,.2)),url(https://plus.unsplash.com/premium_photo-1676139860466-8b8f71c0a737?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center center;
             background-size: cover;
           }
         `}
