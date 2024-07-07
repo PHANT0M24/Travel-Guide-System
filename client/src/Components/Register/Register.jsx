@@ -29,7 +29,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="container mx-auto">
+      <div className="container mx-auto my-6">
         <div className="flex justify-center px-6 my-12">
           <div className="w-full xl:w-3/4 lg:w-11/12 flex shadow-2xl rounded-xl overflow-hidden">
             <div
