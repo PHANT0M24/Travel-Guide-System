@@ -83,7 +83,7 @@ const Login = () => {
                 Forgot Password?
               </span>
               <a
-                href="#"
+                href="/register"
                 className="text-sm text-gray-600 cursor-pointer hover:text-blue-500 transition transform duration-300 hover:-translate-y-1"
               >
                 Do not have an account yet?
