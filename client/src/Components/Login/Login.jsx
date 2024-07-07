@@ -1,6 +1,10 @@
+import { useState } from "react";
+
 const Login = () => {
+  const [show, setShow] = useState(false);
+
   return (
-    <div className="min-h-[80vh] flex container mx-auto">
+    <div className="min-h-[70vh] flex container mx-auto my-20">
       <style>
         {`
           .login_img_section {
@@ -11,7 +15,9 @@ const Login = () => {
       </style>
       <div className="hidden lg:flex w-full lg:w-1/2 login_img_section justify-around items-center lg:rounded-s-3xl">
         <div className="relative w-full mx-auto px-20 flex-col items-center space-y-6 z-10">
-          <h1 className="text-white text-center font-bold text-5xl">Discover Hidden Gems!</h1>
+          <h1 className="text-white text-center font-bold text-5xl">
+            Discover Hidden Gems!
+          </h1>
           <p className="text-white text-2xl text-justify font-serif">
             Open your eyes to diverse cultures, stunning landscapes, and
             unforgettable experiences, creating lifelong memories and enriching
@@ -26,7 +32,7 @@ const Login = () => {
               Hello Again!
             </h1>
             <p className="text-sm font-normal text-gray-600 mb-8">
-              Welcome Back
+              Welcome Back. Ready to log in?
             </p>
             <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl bg-gray-50">
               <svg
@@ -64,13 +70,34 @@ const Login = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <input
-                className="pl-2 w-full outline-none border-none bg-gray-50"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-              />
+              <div className="relative w-full">
+                <input
+                  className="pl-2 w-full outline-none border-none bg-gray-50"
+                  type={show? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                />
+                <div className="absolute top-0 right-4">
+                        <label className="swap swap-flip text-9xl">
+                          <input
+                            type="checkbox"
+                            onClick={() => {
+                              setShow(!show);
+                            }}
+                          />
+                          {show ? (
+                            <div className="swap-on w-[15px] h-[15px]">
+                              <img src="../../../public/visibilityOFF.svg" />
+                            </div>
+                          ) : (
+                            <div className="swap-off w-[15px] h-[15px]">
+                              <img src="../../../public/visibilityON.svg" />
+                            </div>
+                          )}
+                        </label>
+                      </div>
+              </div>
             </div>
             <button
               type="submit"

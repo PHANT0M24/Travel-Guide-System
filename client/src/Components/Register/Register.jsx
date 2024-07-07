@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 const Register = () => {
+  const [show, setShow] = useState(false);
+  const [showC, setShowC] = useState(false);
+
   const handleRegistration = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -84,36 +89,78 @@ const Register = () => {
                   />
                 </div>
                 <div className="flex flex-wrap mb-6">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 relative">
                     <label
                       className="block mb-2 text-sm font-semibold text-gray-700"
                       htmlFor="password"
                     >
                       Password
                     </label>
-                    <input
-                      className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                    />
-                    <p className="text-xs italic text-red-500 mt-1">
-                      Please choose a password.
-                    </p>
+                    <div>
+                      <input
+                        className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        name="password"
+                        type={show ? "text" : "password"}
+                        placeholder="Password"
+                      />
+                      <div className="absolute top-9 right-6">
+                        <label className="swap swap-flip text-9xl">
+                          <input
+                            type="checkbox"
+                            onClick={() => {
+                              setShow(!show);
+                            }}
+                          />
+                          {show ? (
+                            <div className="swap-on w-[15px] h-[15px]">
+                              <img src="../../../public/visibilityOFF.svg" />
+                            </div>
+                          ) : (
+                            <div className="swap-off w-[15px] h-[15px]">
+                              <img src="../../../public/visibilityON.svg" />
+                            </div>
+                          )}
+                        </label>
+                      </div>
+                      <p className="text-xs italic text-red-500 mt-1">
+                        Please choose a password.
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-full md:w-1/2 px-3">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 relative">
                     <label
                       className="block mb-2 text-sm font-semibold text-gray-700"
-                      htmlFor="c_password"
+                      htmlFor="password"
                     >
                       Confirm Password
                     </label>
-                    <input
-                      className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                      name="c_password"
-                      type="password"
-                      placeholder="Confirm Password"
-                    />
+                    <div>
+                      <input
+                        className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        name="password"
+                        type={show ? "text" : "password"}
+                        placeholder="Confirm Password"
+                      />
+                      <div className="absolute top-9 right-6">
+                        <label className="swap swap-flip text-9xl">
+                          <input
+                            type="checkbox"
+                            onClick={() => {
+                              setShowC(!showC);
+                            }}
+                          />
+                          {showC ? (
+                            <div className="swap-on w-[15px] h-[15px]">
+                              <img src="../../../public/visibilityOFF.svg" />
+                            </div>
+                          ) : (
+                            <div className="swap-off w-[15px] h-[15px]">
+                              <img src="../../../public/visibilityON.svg" />
+                            </div>
+                          )}
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="mb-6 text-center">
@@ -125,14 +172,6 @@ const Register = () => {
                   </button>
                 </div>
                 <hr className="mb-6 border-t" />
-                <div className="text-center">
-                  <a
-                    className="inline-block text-sm text-blue-600 hover:text-blue-800"
-                    href="#"
-                  >
-                    Forgot Password?
-                  </a>
-                </div>
                 <div className="text-center">
                   <a
                     className="inline-block text-sm text-blue-600 hover:text-blue-800"
