@@ -1,7 +1,18 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [show, setShow] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    toast.success("success")
+  };
+
 
   return (
     <div className="min-h-[70vh] flex container mx-auto my-20">
@@ -27,7 +38,10 @@ const Login = () => {
       </div>
       <div className="flex w-full lg:w-1/2 justify-center items-center bg-gray-100 space-y-8 lg:rounded-e-3xl">
         <div className="w-full px-8 md:px-32 lg:px-24">
-          <form className="bg-white rounded-md shadow-2xl p-8">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white rounded-md shadow-2xl p-8"
+          >
             <h1 className="text-gray-800 font-bold text-3xl mb-4">
               Hello Again!
             </h1>
@@ -73,30 +87,30 @@ const Login = () => {
               <div className="relative w-full">
                 <input
                   className="pl-2 w-full outline-none border-none bg-gray-50"
-                  type={show? "text" : "password"}
+                  type={show ? "text" : "password"}
                   name="password"
                   id="password"
                   placeholder="Password"
                 />
                 <div className="absolute top-0 right-4">
-                        <label className="swap swap-flip text-9xl">
-                          <input
-                            type="checkbox"
-                            onClick={() => {
-                              setShow(!show);
-                            }}
-                          />
-                          {show ? (
-                            <div className="swap-on w-[15px] h-[15px]">
-                              <img src="../../../public/visibilityOFF.svg" />
-                            </div>
-                          ) : (
-                            <div className="swap-off w-[15px] h-[15px]">
-                              <img src="../../../public/visibilityON.svg" />
-                            </div>
-                          )}
-                        </label>
+                  <label className="swap swap-flip text-9xl">
+                    <input
+                      type="checkbox"
+                      onClick={() => {
+                        setShow(!show);
+                      }}
+                    />
+                    {show ? (
+                      <div className="swap-on w-[15px] h-[15px]">
+                        <img src="../../../public/visibilityOFF.svg" />
                       </div>
+                    ) : (
+                      <div className="swap-off w-[15px] h-[15px]">
+                        <img src="../../../public/visibilityON.svg" />
+                      </div>
+                    )}
+                  </label>
+                </div>
               </div>
             </div>
             <button

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -12,19 +13,44 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const c_password = form.c_password.value;
+    let newUser = {}
 
-    const newUser = { firstName, lastName, email, password, c_password };
-    console.log(newUser);
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    const response = await fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
-    const data = await response.json();
-    console.log(data);
+    if (
+      password.length < minLength ||
+      !hasUpperCase ||
+      !hasLowerCase ||
+      !hasDigit ||
+      !hasSpecialChar
+    ) {
+      // Password does not meet criteria, show toast
+      toast.error(
+        "Password must contain at least 8 characters including uppercase, lowercase, digit, and special characters."
+      );
+      return;
+    } else if (password !== c_password) {
+      toast.error("Passwords do not match.");
+      return;
+    } else{
+      newUser = { firstName, lastName, email, password, c_password };
+    }
+    if (Object.keys(newUser).length > 0){
+
+      const response = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+      const data = await response.json();
+      console.log(data);
+    }
   };
 
   return (
@@ -137,8 +163,8 @@ const Register = () => {
                     <div>
                       <input
                         className="w-full px-4 py-2 text-sm text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                        name="password"
-                        type={show ? "text" : "password"}
+                        name="c_password"
+                        type={showC ? "text" : "password"}
                         placeholder="Confirm Password"
                       />
                       <div className="absolute top-9 right-6">
