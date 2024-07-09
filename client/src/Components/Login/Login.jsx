@@ -9,8 +9,20 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
-    toast.success("success");
+
+    const signInUser = { email, password };
+    const response = await fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(signInUser),
+    });
+    const data = await response.json();
+    if (data.insertedId) {
+      toast.success("Log In Successful!");
+      form.reset();
+    }
   };
 
   return (

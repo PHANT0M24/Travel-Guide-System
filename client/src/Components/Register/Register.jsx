@@ -40,7 +40,7 @@ const Register = () => {
       newUser = { firstName, lastName, email, password };
     }
     if (Object.keys(newUser).length > 0) {
-      const response = await fetch("http://localhost:5000/users", {
+      const response = await fetch("http://localhost:5000/registration", {
         method: "POST",
         headers: {
           "content-type": "application/json",

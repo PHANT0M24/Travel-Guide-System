@@ -28,7 +28,7 @@ async function run() {
     const database = client.db("usersDB");
     const userCollection = database.collection("users");
 
-    app.post("/users", async (req, res) => {
+    app.post("/registration", async (req, res) => {
       const user = req.body;
       console.log(user);
       const result = await userCollection.insertOne(user);
@@ -42,7 +42,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    // await client.close();
+    await client.close();
   }
 }
 run().catch(console.dir);
