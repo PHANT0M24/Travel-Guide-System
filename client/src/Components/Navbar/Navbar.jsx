@@ -76,7 +76,6 @@
 //         </div>
 //         <div className="navbar-end">
 //           <label className="swap swap-rotate">
-
 //             <input
 //               type="checkbox"
 //               onChange={handleToggle}
