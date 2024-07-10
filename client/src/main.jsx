@@ -7,6 +7,7 @@ import ErrorPage from "./Components/Errorpage/Errorpage.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Register from "./Components/Register/Register.jsx";
 import Login from "./Components/Login/Login.jsx";
+import User from "./Components/User/User.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login/>
+      },
+      {
+        path: "/userProfile",
+        element: <User/> 
       }
     ]
   },
