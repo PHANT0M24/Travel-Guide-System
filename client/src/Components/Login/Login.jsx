@@ -11,7 +11,7 @@ const Login = () => {
     const password = form.password.value;
 
     const signInUser = { email, password };
-    const response = await fetch("http://localhost:5000/users", {
+    const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
