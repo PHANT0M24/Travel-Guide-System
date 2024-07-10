@@ -1,60 +1,99 @@
-
 export default function Hero() {
   return (
-    <section className="header-banner w-full">
-      <div className="carousel w-full h-[90vh]">
-        <div className="hero-content text-center absolute z-10 left-0 right-0 top-[35%] ml-auto mr-auto">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold text-white">Hello There</h1>
-            <p className="py-6 text-2xl font-bold text-white">
-              {`A comprehensive guide to world's best destinations.`}
+    <div className="carousel w-full h-[90vh]">
+      <div id="slide1" className="carousel-item relative w-full">
+        <img
+          src="https://images.unsplash.com/photo-1604993497451-eed6eb271a9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute rounded-xl h-full flex items-center left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]">
+          <div className="text-white pl-4 md:pl-12 space-y-4 md:space-y-7 w-full md:w-1/2">
+            <h2 className="text-2xl md:text-5xl font-bold">
+              Affordable Price for traveling
+            </h2>
+            <p className="text-sm md:text-base">
+              There are many variations of passages of available, but the
+              majority have suffered alteration in some form
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-primary mr-2 md:mr-4">
+              Get Started
+            </button>
+            <button className="btn btn-outline btn-secondary">
+              Latest Project
+            </button>
           </div>
         </div>
-        <div id="slide1" className="carousel-item relative w-full">
-          <img
-            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="w-full"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20">
-            <a href="#slide3" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <img
-            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="w-full"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide3" className="carousel-item relative w-full">
-          <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className="w-full"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-20">
-            <a href="#slide2" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide1" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
+        <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 bottom-0 md:left-5 md:right-5 gap-x-2 md:gap-x-5">
+          <a href="#slide3" className="btn btn-circle btn-sm md:btn-md">
+            ❮
+          </a>
+          <a href="#slide2" className="btn btn-circle btn-sm md:btn-md">
+            ❯
+          </a>
         </div>
       </div>
-    </section>
+      <div id="slide2" className="carousel-item relative w-full hidden md:flex">
+        <img
+          src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          className="w-full h-full object-cover opacity-[.95]"
+        />
+        <div className="absolute rounded-xl h-full flex items-center left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]">
+          <div className="text-white pl-4 md:pl-12 space-y-4 md:space-y-7 w-full md:w-1/2">
+            <h2 className="text-2xl md:text-5xl font-bold">
+              Affordable Price for traveling
+            </h2>
+            <p className="text-sm md:text-base">
+              There are many variations of passages of available, but the
+              majority have suffered alteration in some form
+            </p>
+            <button className="btn btn-primary mr-2 md:mr-4">
+              Get Started
+            </button>
+            <button className="btn btn-outline btn-secondary">
+              Latest Project
+            </button>
+          </div>
+        </div>
+        <div className="absolute md:flex justify-between transform -translate-y-1/2 left-2 right-2 bottom-0 md:left-5 md:right-5 gap-x-2 md:gap-x-5">
+          <a href="#slide1" className="btn btn-circle btn-sm md:btn-md">
+            ❮
+          </a>
+          <a href="#slide3" className="btn btn-circle btn-sm md:btn-md">
+            ❯
+          </a>
+        </div>
+      </div>
+      <div id="slide3" className="carousel-item relative w-full hidden md:flex">
+        <img
+          src="https://images.unsplash.com/photo-1666180765528-b0090962ba37?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute rounded-xl h-full flex items-center left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]">
+          <div className="text-white pl-4 md:pl-12 space-y-4 md:space-y-7 w-full md:w-1/2">
+            <h2 className="text-2xl md:text-5xl font-bold">
+              Affordable Price for traveling
+            </h2>
+            <p className="text-sm md:text-base">
+              There are many variations of passages of available, but the
+              majority have suffered alteration in some form
+            </p>
+            <button className="btn btn-primary mr-2 md:mr-4">
+              Get Started
+            </button>
+            <button className="btn btn-outline btn-secondary">
+              Latest Project
+            </button>
+          </div>
+        </div>
+        <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 bottom-0 md:left-5 md:right-5 gap-x-2 md:gap-x-5">
+          <a href="#slide2" className="btn btn-circle btn-sm md:btn-md">
+            ❮
+          </a>
+          <a href="#slide1" className="btn btn-circle btn-sm md:btn-md">
+            ❯
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

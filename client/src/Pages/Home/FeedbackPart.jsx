@@ -8,7 +8,7 @@ const FeedbackPart = ({ feedback }) => {
     // }
     return (
         <div >
-            <div className="card transition hover:scale-110 hover:border-primary w-96 shadow-xl bg-green-50">
+            <div className="card transition hover:scale-110 hover:border-primary w-96 shadow-xl bg-green-50 container mx-auto text-center">
                 <div className="card-body">
                     <h2 className="card-title">
                         {feedback.name}

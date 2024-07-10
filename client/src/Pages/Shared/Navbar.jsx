@@ -25,12 +25,12 @@ const Navbar = () => {
     if (e.target.checked) {
       setTheme("forest");
     } else {
-      setTheme("cupcake");
+      setTheme("wireframe");
     }
   };
 
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "cupcake"
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "wireframe"
   );
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -54,8 +54,8 @@ const Navbar = () => {
       <div
         className={`navbar ${
           changeHeader
-            ? "bg-[#0000008C] fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
-            : "bg-transparent fixed z-50 top-0 left-0 w-full transition duration-500"
+            ? "bg-[#000000CC] fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
+            : "bg-[#000000B3] fixed z-50 top-0 left-0 w-full transition duration-500"
         }`}
       >
         <div className="navbar-start">
@@ -83,7 +83,7 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <div className="flex flex-col ml-12 mx-auto">
+          <div className="ml-12 mx-auto">
             <NavLink
               to="/"
               className="btn bg-transparent border-none hover:bg-transparent"
@@ -91,27 +91,26 @@ const Navbar = () => {
               <img
                 className="w-[70px] h-[60px] mx-auto hidden md:flex"
                 src="https://i.ibb.co/ZhP22nP/output-onlinepngtools.png"
-                alt=""
+                alt="Home Button"
               />
             </NavLink>
-            <p className="text-center font-bold w-[90px] md:w-[150px] text-[15px] mr-3 md:mr-0 md:text-xl text-white">
+            <p className="text-center font-bold w-[90px] md:w-[150px] text-[15px] mr-3 md:ml-5 md:text-xl text-white hidden md:flex">
               Explore Ease
             </p>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-lg">{navOptions}</ul>
+          <ul className="menu menu-horizontal px-1 text-lg text-white font-bold">{navOptions}</ul>
         </div>
         <div className="navbar-end mr-12 mx-auto gap-x-7">
-          <div className="text-lg md:text-2xl flex gap-x-4 cursor-pointer items-center">
+          <div className="text-lg md:text-2xl flex gap-x-4 cursor-pointer items-center text-white">
             <IoSearch></IoSearch>
-            {/* <FaCartFlatbed></FaCartFlatbed> */}
             <div>
               <label className="swap swap-rotate">
                 <input
                   type="checkbox"
                   onChange={handleToggle}
-                  checked={theme == "cupcake" ? false : true}
+                  checked={theme == "wireframe" ? false : true}
                   className="theme-controller"
                   value="synthwave"
                 />
@@ -137,7 +136,7 @@ const Navbar = () => {
             </div>
             <p className="text-3xl font-bold">|</p>
           </div>
-          <button className="btn w-20 md:w-32 btn-outline">Book Now</button>
+          <button className="btn w-20 md:w-32 btn-outline text-white">Book Now</button>
         </div>
       </div>
     </>
