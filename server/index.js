@@ -54,7 +54,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Easter Ease Server is running");
+  res.send("Easter Ease Server is running now");
 });
 app.listen(port, () => {
   console.log(`Easter Ease server is running on port ${port}`);
