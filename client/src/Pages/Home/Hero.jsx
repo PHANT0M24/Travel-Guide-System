@@ -1,7 +1,8 @@
+
 export default function Hero() {
   return (
-    <section className="header-banner h-screen w-full ">
-      <div className="carousel w-full h-full ">
+    <section className="header-banner w-full">
+      <div className="carousel w-full h-[90vh]">
         <div className="hero-content text-center absolute z-10 left-0 right-0 top-[35%] ml-auto mr-auto">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold text-white">Hello There</h1>
@@ -53,20 +54,6 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        {/* <div id="slide4" className="carousel-item relative w-full">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
-            className="w-full"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide3" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide1" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div> */}
       </div>
     </section>
   );

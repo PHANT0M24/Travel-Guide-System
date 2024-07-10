@@ -1,17 +1,46 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
+
 const Login = () => {
+  const [show, setShow] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const signInUser = { email, password };
+    console.log(signInUser)
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(signInUser),
+    });
+    const data = await response.json();
+    if (data) {
+      toast.success("Log In Successful!");
+      form.reset();
+    }
+  };
+
   return (
-    <div className="min-h-[80vh] flex container mx-auto">
+    <div className="min-h-[70vh] flex container mx-auto my-20">
       <style>
         {`
           .login_img_section {
-            background: linear-gradient(rgba(2,2,2,.8),rgba(0,0,0,.7)),url(https://i.ibb.co/HBQ1zn7/Cozy-Townhouse-with-Garden.jpg) center center;
+            background: linear-gradient(rgba(2,2,2,.8),rgba(0,0,0,.2)),url(https://plus.unsplash.com/premium_photo-1676139860466-8b8f71c0a737?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center center;
             background-size: cover;
           }
         `}
       </style>
       <div className="hidden lg:flex w-full lg:w-1/2 login_img_section justify-around items-center lg:rounded-s-3xl">
         <div className="relative w-full mx-auto px-20 flex-col items-center space-y-6 z-10">
-          <h1 className="text-white text-center font-bold text-5xl">Discover Hidden Gems!</h1>
+          <h1 className="text-white text-center font-bold text-5xl">
+            Discover Hidden Gems!
+          </h1>
           <p className="text-white text-2xl text-justify font-serif">
             Open your eyes to diverse cultures, stunning landscapes, and
             unforgettable experiences, creating lifelong memories and enriching
@@ -21,12 +50,15 @@ const Login = () => {
       </div>
       <div className="flex w-full lg:w-1/2 justify-center items-center bg-gray-100 space-y-8 lg:rounded-e-3xl">
         <div className="w-full px-8 md:px-32 lg:px-24">
-          <form className="bg-white rounded-md shadow-2xl p-8">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white rounded-md shadow-2xl p-8"
+          >
             <h1 className="text-gray-800 font-bold text-3xl mb-4">
               Hello Again!
             </h1>
             <p className="text-sm font-normal text-gray-600 mb-8">
-              Welcome Back
+              Welcome Back. Ready to log in?
             </p>
             <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl bg-gray-50">
               <svg
@@ -64,13 +96,34 @@ const Login = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <input
-                className="pl-2 w-full outline-none border-none bg-gray-50"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-              />
+              <div className="relative w-full">
+                <input
+                  className="pl-2 w-full outline-none border-none bg-gray-50"
+                  type={show ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                />
+                <div className="absolute top-0 right-4">
+                  <label className="swap swap-flip text-9xl">
+                    <input
+                      type="checkbox"
+                      onClick={() => {
+                        setShow(!show);
+                      }}
+                    />
+                    {show ? (
+                      <div className="swap-on w-[15px] h-[15px]">
+                        <img src="../../../public/visibilityOFF.svg" />
+                      </div>
+                    ) : (
+                      <div className="swap-off w-[15px] h-[15px]">
+                        <img src="../../../public/visibilityON.svg" />
+                      </div>
+                    )}
+                  </label>
+                </div>
+              </div>
             </div>
             <button
               type="submit"
@@ -83,7 +136,7 @@ const Login = () => {
                 Forgot Password?
               </span>
               <a
-                href="#"
+                href="/register"
                 className="text-sm text-gray-600 cursor-pointer hover:text-blue-500 transition transform duration-300 hover:-translate-y-1"
               >
                 Do not have an account yet?
