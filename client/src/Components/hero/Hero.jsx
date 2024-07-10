@@ -6,7 +6,7 @@ export default function Hero() {
           <div className="max-w-md">
             <h1 className="text-5xl font-bold text-white">Hello There</h1>
             <p className="py-6 text-2xl font-bold text-white">
-              A comprehensive guide to world's best destinations.
+              {`A comprehensive guide to world's best destinations.`}
             </p>
             <button className="btn btn-primary">Get Started</button>
           </div>
