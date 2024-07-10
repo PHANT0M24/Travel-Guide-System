@@ -11,6 +11,7 @@ const Login = () => {
     const password = form.password.value;
 
     const signInUser = { email, password };
+    console.log(signInUser)
     const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
@@ -19,7 +20,7 @@ const Login = () => {
       body: JSON.stringify(signInUser),
     });
     const data = await response.json();
-    if (data.insertedId) {
+    if (data) {
       toast.success("Log In Successful!");
       form.reset();
     }

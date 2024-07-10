@@ -55,18 +55,23 @@ app.post("/registration", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
+
   try {
     const user = await userCollection.findOne({ email: email });
     if (!user) {
+      console.log("User not found");
       return res.status(400).send("User not found");
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
+      console.log("Invalid password");
       return res.status(400).send("Invalid password");
     }
 
-    res.send(user);
+    // Exclude the password field
+    const { password: _, ...userWithoutPassword } = user;
+    res.send(userWithoutPassword);
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).send("Error during login");
