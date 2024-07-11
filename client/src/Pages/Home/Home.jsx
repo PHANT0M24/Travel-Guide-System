@@ -7,6 +7,7 @@ import FeedbackPart from "./FeedbackPart";
 
 const Home = () => {
     const feedbackLoader = useLoaderData()
+    // console.log(feedbackLoader);
 
     return (
         <div>

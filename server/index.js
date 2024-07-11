@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.tjpswkv.mongodb.net/?appName=Cluster0`;
 // console.log(uri);
 
@@ -27,17 +27,25 @@ async function run() {
     await client.connect();
 
     const feedbackCollection = client.db("travelDB").collection("feedback");
-
+    // feedback read
     app.get("/feedback", async (req, res) => {
       const cursor = feedbackCollection.find();
       const result = await cursor.toArray();
       res.send(result);
     });
 
+    // add feedback
     app.post("/feedback", async (req, res) => {
       const newFeedback = req.body;
       console.log(newFeedback);
       const result = await feedbackCollection.insertOne(newFeedback);
+      res.send(result);
+    });
+    // delete feedback
+    app.delete("/feedback:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await feedbackCollection.deleteOne(query);
       res.send(result);
     });
 

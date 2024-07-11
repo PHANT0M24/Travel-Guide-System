@@ -43,8 +43,8 @@ const FeedbackK = () => {
             })
     }
     return (
-        <div className="pb-12">
-            <div className="relative my-20 lg:w-full bg-[url('https://i.ibb.co/HPWNL44/photo-1645846673812-c68f52871d06.jpg')] bg-center bg-cover h-[50vh] lg:h-[400px] flex items-center mx-2" style={{ backgroundImage: `linear-gradient(0deg, rgba(21, 11, 43, 0.9), rgba(21, 11, 43, 0) 100%), url('https://i.ibb.co/HPWNL44/photo-1645846673812-c68f52871d06.jpg')` }}>
+        <div className="">
+            <div className="relative my-20 lg:w-full bg-[url('https://i.ibb.co/HPWNL44/photo-1645846673812-c68f52871d06.jpg')] bg-center bg-cover h-[900px] flex items-center mx-2" style={{ backgroundImage: `linear-gradient(0deg, rgba(21, 11, 43, 0.9), rgba(21, 11, 43, 0) 100%), url('https://i.ibb.co/HPWNL44/photo-1645846673812-c68f52871d06.jpg')` }}>
                 <div className="lg:max-w-[923px] mx-auto text-white text-center">
                     {/* <h1>Total Feedback: {feedback.length}</h1> */}
                     <h1 style={{ fontFamily: "Bree Serif" }} className=" font-bold lg:text-[49px] bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-cyan-200">Give us your Valuable Suggestions!</h1>

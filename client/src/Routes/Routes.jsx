@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
                 loader: () => fetch('http://localhost:5000/feedback')
 
             },
-            {
+            { 
                 path: '/feedback',
                 element: <AddFeedback></AddFeedback>,
             },
