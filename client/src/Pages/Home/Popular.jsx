@@ -16,7 +16,7 @@ const Popular = () => {
                                 src="https://i.ibb.co/86sx1FQ/longest-sea-beach-in.jpg"
                                 alt="Cox's Bazar" />
                         </figure>
-                        <div className="card-body text-start text-start">
+                        <div className="card-body text-start">
                             <h2 className="card-title font-bold">Dhaka to Cox’s Bazar</h2>
                             <p className="text-sm">Home to the longest natural sea beach in the world, stretching over 120 kilometers.</p>
                             <p className="text-sm"><span className="font-bold">Activities:</span> Beach activities, seafood, and visiting nearby Himchari National Park.</p>
