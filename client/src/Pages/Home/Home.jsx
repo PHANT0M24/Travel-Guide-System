@@ -7,12 +7,7 @@ import FeedbackPart from "./FeedbackPart";
 import Hero from "./Hero";
 
 const Home = () => {
-<<<<<<< HEAD
   const feedbackLoader = useLoaderData();
-=======
-    const feedbackLoader = useLoaderData()
-    // console.log(feedbackLoader);
->>>>>>> 4b2637fa9f170c74181ef82a04a3bb4b12b419f3
 
   return (
     <>

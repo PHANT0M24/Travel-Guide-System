@@ -4,12 +4,7 @@ import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 const FeedbackPart = ({ feedback }) => {
-<<<<<<< HEAD
-    
-    console.log()
-=======
     const [dfeedback, setDfeedback] = useState(feedback)
->>>>>>> 4b2637fa9f170c74181ef82a04a3bb4b12b419f3
 
     const handleDelete = _id => {
         console.log(_id);
@@ -45,11 +40,7 @@ const FeedbackPart = ({ feedback }) => {
     }
     return (
         <div >
-<<<<<<< HEAD
-            <div className="card transition hover:scale-110 hover:border-primary w-96 shadow-xl bg-green-50 container mx-auto text-center">
-=======
             <div className="card transition hover:scale-110 hover:border-primary w-96 h-[230px] shadow-xl bg-green-50">
->>>>>>> 4b2637fa9f170c74181ef82a04a3bb4b12b419f3
                 <div className="card-body">
                     <h2 className="card-title">
                         {feedback.name}
