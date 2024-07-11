@@ -11,14 +11,8 @@ const salt = 10;
 app.use(cors());
 app.use(express.json());
 
-<<<<<<< HEAD
 const uri =
   "mongodb+srv://mkarifat24:khairulanam24@travelguidesystem.dqchubt.mongodb.net/?retryWrites=true&w=majority&appName=TravelGuideSystem";
-=======
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.tjpswkv.mongodb.net/?appName=Cluster0`;
-// console.log(uri);
->>>>>>> 4b2637fa9f170c74181ef82a04a3bb4b12b419f3
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -38,7 +32,6 @@ async function run() {
     const userCollection = database.collection("users");
 
     const feedbackCollection = client.db("travelDB").collection("feedback");
-<<<<<<< HEAD
 
     app.post("/registration", async (req, res) => {
       const user = req.body;
@@ -80,9 +73,7 @@ async function run() {
       }
     });
 
-=======
     // feedback read
->>>>>>> 4b2637fa9f170c74181ef82a04a3bb4b12b419f3
     app.get("/feedback", async (req, res) => {
       const cursor = feedbackCollection.find();
       const result = await cursor.toArray();
@@ -99,9 +90,14 @@ async function run() {
     // delete feedback
     app.delete("/feedback:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await feedbackCollection.deleteOne(query);
-      res.send(result);
+      let newId = new ObjectId(id)
+      if (id && newId) {
+        const query = { _id: newId };
+        const result = await feedbackCollection.deleteOne(query);
+        res.send(result);
+      } else{
+        res.send("Nothing to show")
+      }
     });
 
     // Send a ping to confirm a successful connection

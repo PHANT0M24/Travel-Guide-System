@@ -1,0 +1,33 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "ishrat_branch",
+    "itinerary-builder",
+    "khairul_branch",
+    "kongkon_branch",
+    "main",
+    "najmul_branch",
+    "origin",
+    "test"
+  ],
+  "parent": {
+    "ishrat_branch": "main",
+    "itinerary-builder": "main",
+    "khairul_branch": "main",
+    "kongkon_branch": "main",
+    "main": null,
+    "najmul_branch": "main",
+    "origin": "main",
+    "test": "main"
+  },
+  "order": [
+    "main",
+    "ishrat_branch",
+    "itinerary-builder",
+    "khairul_branch",
+    "kongkon_branch",
+    "najmul_branch",
+    "origin",
+    "test"
+  ]
+}

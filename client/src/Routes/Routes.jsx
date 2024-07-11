@@ -15,7 +15,6 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-<<<<<<< HEAD
         element: <Home></Home>,
         loader: () => fetch("http://localhost:5000/feedback"),
       },
@@ -37,20 +36,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-=======
-        element: <Main></Main>,
-        children: [
-            {
-                path: '/',
-                element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/feedback')
-
-            },
-            { 
-                path: '/feedback',
-                element: <AddFeedback></AddFeedback>,
-            },
-        ]
-    },
->>>>>>> 4b2637fa9f170c74181ef82a04a3bb4b12b419f3
 ]);
