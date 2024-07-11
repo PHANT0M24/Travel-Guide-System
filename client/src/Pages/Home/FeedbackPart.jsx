@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 const FeedbackPart = ({ feedback }) => {
+    
+    console.log()
 
     // const handleDelete = (e) => {
     //     e.preventDefault()

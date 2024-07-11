@@ -5,6 +5,7 @@ import AddFeedback from "../Pages/Home/AddFeedback";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ErrorPage from "../Pages/Errorpage/Errorpage";
+import UserPage from "../Pages/UserPage/UserPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/userpage",
+        element: <UserPage />,
       },
     ],
   },

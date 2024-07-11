@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
+  const { user, setUser } = useContext(AuthContext);
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -11,7 +14,6 @@ const Login = () => {
     const password = form.password.value;
 
     const signInUser = { email, password };
-    console.log(signInUser)
     const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
@@ -21,6 +23,8 @@ const Login = () => {
     });
     const data = await response.json();
     if (data) {
+      setUser(data);
+      console.log(user)
       toast.success("Log In Successful!");
       form.reset();
     }

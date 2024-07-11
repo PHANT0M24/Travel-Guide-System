@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const navOptions = (
     <>
       <li>
@@ -16,6 +18,9 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/feedback">Feedback</NavLink>
+      </li>
+      <li>
+        <NavLink to={user ? "/userpage" : "/register"}>UserPage</NavLink>
       </li>
     </>
   );
@@ -100,7 +105,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-lg text-white font-bold">{navOptions}</ul>
+          <ul className="menu menu-horizontal px-1 text-lg text-white font-bold">
+            {navOptions}
+          </ul>
         </div>
         <div className="navbar-end mr-12 mx-auto gap-x-7">
           <div className="text-lg md:text-2xl flex gap-x-4 cursor-pointer items-center text-white">
@@ -136,7 +143,9 @@ const Navbar = () => {
             </div>
             <p className="text-3xl font-bold">|</p>
           </div>
-          <button className="btn w-20 md:w-32 btn-outline text-white">Book Now</button>
+          <button className="btn w-20 md:w-32 btn-outline text-white">
+            Book Now
+          </button>
         </div>
       </div>
     </>
