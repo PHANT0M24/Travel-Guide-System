@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
-import Home from "../Pages/Home/Home";
+import ErrorPage from "../Pages/Errorpage/Errorpage";
 import AddFeedback from "../Pages/Home/AddFeedback";
+import Home from "../Pages/Home/Home";
+import Itinerary from "../Pages/Itinerary";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import ErrorPage from "../Pages/Errorpage/Errorpage";
 import UserPage from "../Pages/UserPage/UserPage";
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/feedback",
         element: <AddFeedback></AddFeedback>,
+      },
+      {
+        path: "/itinerary",
+        element: <Itinerary></Itinerary>,
       },
       {
         path: "/login",

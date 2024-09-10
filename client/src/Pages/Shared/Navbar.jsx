@@ -19,6 +19,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/feedback">Feedback</NavLink>
       </li>
+      {user ? (
+        <li>
+          <NavLink to="/itinerary">Itinerary</NavLink>
+        </li>
+      ) : undefined}
       <li>
         <NavLink to={user ? "/userpage" : "/register"}>UserPage</NavLink>
       </li>

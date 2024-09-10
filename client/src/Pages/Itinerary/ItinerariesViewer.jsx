@@ -1,0 +1,142 @@
+import { Calendar, Clock, MapPin, Trash2 } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+export default function ItinerariesViewer({ userId }) {
+  const [itineraries, setItineraries] = useState([]);
+  const [selectedItinerary, setSelectedItinerary] = useState(null);
+
+  useEffect(() => {
+    fetchItineraries();
+  }, [userId]);
+
+  const fetchItineraries = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/itineraries/${userId}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setItineraries(data);
+      }
+    } catch (error) {
+      console.error("Error fetching itineraries:", error);
+    }
+  };
+
+  const fetchItineraryDetails = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/itinerary/${id}`);
+      if (response.ok) {
+        const data = await response.json();
+        setSelectedItinerary(data);
+      }
+    } catch (error) {
+      console.error("Error fetching itinerary details:", error);
+    }
+  };
+
+  const deleteItinerary = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/itinerary/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
+          if (response.ok) {
+            setItineraries(
+              itineraries.filter((itinerary) => itinerary._id !== id)
+            );
+            if (selectedItinerary && selectedItinerary._id === id) {
+              setSelectedItinerary(null);
+            }
+          }
+        } catch (error) {
+          console.error("Error deleting itinerary:", error);
+        }
+      }
+    });
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Your Itineraries</h1>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title mb-4">Itinerary List</h2>
+            {itineraries.map((itinerary) => (
+              <div
+                key={itinerary._id}
+                className="flex items-center justify-center mb-2"
+              >
+                <button
+                  className="btn btn-outline btn-block text-left justify-start flex-grow mr-2"
+                  onClick={() => fetchItineraryDetails(itinerary._id)}
+                >
+                  {itinerary.title}
+                </button>
+                <button
+                  className="btn btn-square btn-sm btn-error"
+                  onClick={() => deleteItinerary(itinerary._id)}
+                  aria-label={`Delete ${itinerary.title}`}
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title mb-4">Itinerary Details</h2>
+            {selectedItinerary ? (
+              <div>
+                <h3 className="text-xl font-semibold mb-2">
+                  {selectedItinerary.title}
+                </h3>
+                {selectedItinerary.destinations.map((destination) => (
+                  <div key={destination.id} className="mb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin size={16} />
+                      <span className="font-medium">{destination.name}</span>
+                      <span className="text-sm text-gray-500">
+                        <Calendar size={14} className="inline mr-1" />
+                        {destination.date}
+                      </span>
+                    </div>
+                    <ul className="list-disc list-inside pl-4">
+                      {destination.activities.map((activity) => (
+                        <li key={activity.id} className="mb-1">
+                          <span className="font-medium">{activity.name}</span>
+                          <span className="text-sm text-gray-500 ml-2">
+                            <Clock size={14} className="inline mr-1" />
+                            {activity.time}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500">
+                Select an itinerary to view details
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
