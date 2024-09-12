@@ -142,6 +142,12 @@ export default function ItinerariesViewer({ userId }) {
   );
 }
 
+// ItinerariesViewer.propTypes = {
+//   userId: PropTypes.object,
+// }
 ItinerariesViewer.propTypes = {
-  userId: PropTypes.object,
-}
+  userId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+};
