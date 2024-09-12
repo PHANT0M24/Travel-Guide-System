@@ -6,6 +6,7 @@ import ItinerariesViewer from './ItinerariesViewer'
 
 export default function Itinerary() {
   const { user } = useContext(AuthContext);
+  console.log('user', user)
   const [activeTab, setActiveTab] = useState("builder");
   
   return (
