@@ -5,6 +5,7 @@ import "./index.css";
 import { router } from "./Routes/Routes";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./providers/AuthProvider";
+// import { FirebaseProvider } from "./FirebaseProvider/FirebaseProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

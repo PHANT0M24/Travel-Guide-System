@@ -25,7 +25,6 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
     const database = client.db("usersDB");
@@ -33,43 +32,15 @@ async function run() {
 
     const feedbackCollection = client.db("travelDB").collection("feedback");
 
-    app.post("/registration", async (req, res) => {
+    app.post("/login", async (req, res) => {
       const user = req.body;
       try {
-        const hash = await bcrypt.hash(user.password, salt);
-        user.password = hash;
-        console.log(user.password);
-
+        console.log(req.body);
         const result = await userCollection.insertOne(user);
         res.send(result);
       } catch (error) {
         console.error("Error during registration:", error);
         res.status(500).send("Error during registration");
-      }
-    });
-
-    app.post("/login", async (req, res) => {
-      const { email, password } = req.body;
-
-      try {
-        const user = await userCollection.findOne({ email: email });
-        if (!user) {
-          console.log("User not found");
-          return res.status(400).send("User not found");
-        }
-
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-          console.log("Invalid password");
-          return res.status(400).send("Invalid password");
-        }
-
-        // Exclude the password field
-        const { password: _, ...userWithoutPassword } = user;
-        res.send(userWithoutPassword);
-      } catch (error) {
-        console.error("Error during login:", error);
-        res.status(500).send("Error during login");
       }
     });
 
@@ -90,13 +61,75 @@ async function run() {
     // delete feedback
     app.delete("/feedback:id", async (req, res) => {
       const id = req.params.id;
-      let newId = new ObjectId(id)
+      let newId = new ObjectId(id);
       if (id && newId) {
         const query = { _id: newId };
         const result = await feedbackCollection.deleteOne(query);
         res.send(result);
-      } else{
-        res.send("Nothing to show")
+      } else {
+        res.send("Nothing to show");
+      }
+    });
+
+    ///Samira Hossain
+    app.get("/itineraries/:userId", async (req, res) => {
+      try {
+        const userId = req.params.userId;
+        const itineraries = await itinerariesCollection
+          .find({ userId: userId }, { projection: { title: 1 } })
+          .toArray();
+        res.json(itineraries);
+      } catch (error) {
+        res.status(500).json({ error: "Error fetching itineraries" });
+      }
+    });
+
+    app.get("/itinerary/:id", async (req, res) => {
+      try {
+        const itinerary = await itinerariesCollection.findOne({
+          _id: new ObjectId(req.params.id),
+        });
+        if (!itinerary) {
+          return res.status(404).json({ error: "Itinerary not found" });
+        }
+        res.json(itinerary);
+      } catch (error) {
+        res.status(500).json({ error: "Error fetching itinerary" });
+      }
+    });
+
+    app.post("/itinerary", async (req, res) => {
+      try {
+        const itinerary = req.body;
+        if (itinerary._id) {
+          const result = await itinerariesCollection.updateOne(
+            { _id: new ObjectId(itinerary._id) },
+            { $set: itinerary }
+          );
+          if (result.matchedCount === 0) {
+            return res.status(404).json({ error: "Itinerary not found" });
+          }
+        } else {
+          const result = await itinerariesCollection.insertOne(itinerary);
+          itinerary._id = result.insertedId;
+        }
+        res.json({ message: "Itinerary saved successfully", itinerary });
+      } catch (error) {
+        res.status(500).json({ error: "Error saving itinerary" });
+      }
+    });
+
+    app.delete("/itinerary/:id", async (req, res) => {
+      try {
+        const result = await itinerariesCollection.deleteOne({
+          _id: new ObjectId(req.params.id),
+        });
+        if (result.deletedCount === 0) {
+          return res.status(404).json({ error: "Itinerary not found" });
+        }
+        res.json({ message: "Itinerary deleted successfully" });
+      } catch (error) {
+        res.status(500).json({ error: "Error deleting itinerary" });
       }
     });
 
@@ -118,58 +151,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Easter Ease server is running on port ${port}`);
 });
-// async function connectDB() {
-//   try {
-//     // Connect the client to the server (optional starting in v4.7)
-//     await client.connect();
-//     console.log("Connected to MongoDB!");
-//   } catch (error) {
-//     console.error("Error connecting to MongoDB:", error);
-//   }
-// }
-
-// // Call connectDB to connect to the database at the start
-// connectDB();
-
-// const database = client.db("usersDB");
-// const userCollection = database.collection("users");
-
-// app.post("/registration", async (req, res) => {
-//   const user = req.body;
-//   try {
-//     const hash = await bcrypt.hash(user.password, salt);
-//     user.password = hash;
-//     console.log(user.password);
-
-//     const result = await userCollection.insertOne(user);
-//     res.send(result);
-//   } catch (error) {
-//     console.error("Error during registration:", error);
-//     res.status(500).send("Error during registration");
-//   }
-// });
-
-// app.post("/login", async (req, res) => {
-//   const { email, password } = req.body;
-
-//   try {
-//     const user = await userCollection.findOne({ email: email });
-//     if (!user) {
-//       console.log("User not found");
-//       return res.status(400).send("User not found");
-//     }
-
-//     const match = await bcrypt.compare(password, user.password);
-//     if (!match) {
-//       console.log("Invalid password");
-//       return res.status(400).send("Invalid password");
-//     }
-
-//     // Exclude the password field
-//     const { password: _, ...userWithoutPassword } = user;
-//     res.send(userWithoutPassword);
-//   } catch (error) {
-//     console.error("Error during login:", error);
-//     res.status(500).send("Error during login");
-//   }
-// });

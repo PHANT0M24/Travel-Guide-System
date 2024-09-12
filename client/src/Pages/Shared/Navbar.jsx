@@ -1,10 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
+// import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
   const navOptions = (
     <>
       <li>
@@ -19,11 +34,23 @@ const Navbar = () => {
       <li>
         <NavLink to="/feedback">Feedback</NavLink>
       </li>
+      {
+        user ? (
+          <li>
+            <NavLink to="/itinerary">Itinerary</NavLink>
+          </li>
+        ) : undefined
+      }
+      <li>
+        <NavLink to="/recommend">Recommend</NavLink>
+      </li>
       <li>
         <NavLink to={user ? "/userpage" : "/register"}>UserPage</NavLink>
       </li>
+
     </>
   );
+
   const [changeHeader, setChangeHeader] = useState(false);
 
   const handleToggle = (e) => {
@@ -57,11 +84,10 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`navbar ${
-          changeHeader
-            ? "bg-[#000000CC] fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
-            : "bg-[#000000B3] fixed z-50 top-0 left-0 w-full transition duration-500"
-        }`}
+        className={`navbar ${changeHeader
+          ? "bg-[#000000CC] fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
+          : "bg-[#000000B3] fixed z-50 top-0 left-0 w-full transition duration-500"
+          }`}
       >
         <div className="navbar-start">
           <div className="dropdown">
@@ -88,7 +114,7 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <div className="ml-12 mx-auto">
+          <div className="ml-12 mx-auto flex items-center ">
             <NavLink
               to="/"
               className="btn bg-transparent border-none hover:bg-transparent"

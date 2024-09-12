@@ -6,6 +6,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ErrorPage from "../Pages/Errorpage/Errorpage";
 import UserPage from "../Pages/UserPage/UserPage";
+import Recommend from "../Pages/Recommend/Recommend";
+import Itinerary from "../Pages/Itinerary";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ export const router = createBrowserRouter([
       {
         path: "/userpage",
         element: <UserPage />,
+      },
+      {
+        path: "/recommend",
+        element: <Recommend />,
+      },
+      {
+        path: "/itinerary",
+        element: <Itinerary></Itinerary>,
       },
     ],
   },
